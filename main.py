@@ -24,6 +24,19 @@ INSERT INTO alunos (nome,idade,curso)
 VALUES (?,?,?)
 """,(nome, 20, "Medicina"))
 
+# Podemos cadastrar varias informações no banco de dados
+alunos = [
+    ("Enzo", 22, "Direito"),
+    ("Murilo", 33, "computação"),
+    ("Eduardo", 41, "Computação")
+]
+
+cursor.executemany("""
+INSERT INTO alunos (nome,idade,curso)
+VALUES (?,?,?)
+""",(alunos)
+)
+
 # Precisamos confirmar as alterações no banco de dados
 conexao.commit()
 
