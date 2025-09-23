@@ -40,12 +40,22 @@ cursor = conexao.cursor()
 # # Precisamos confirmar as alterações no banco de dados
 # conexao.commit()
 
-# Atualizar os dados no banco de dados
-cursor.execute("""
-UPDATE alunos
-SET nome = ?, idade = ?,curso = ?
-WHERE id = ?
-""",("Maria",18, "ADS", 2))
-conexao.commit()
-print("Dados atualizados com sucesso!")
+# # Atualizar os dados no banco de dados
+# cursor.execute("""
+# UPDATE alunos
+# SET nome = ?, idade = ?,curso = ?
+# WHERE id = ?
+# """,("Maria",18, "ADS", 2))
+# conexao.commit()
+# print("Dados atualizados com sucesso!")
 
+# Consultar os dados no banco de dados
+cursor.execute("SELECT * FROM alunos")
+# Ferchall traz todas as linhas da consulta
+for linha in cursor.fetchall():
+    print(f"ID {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]}")
+
+# Selecionar apenas os alunos de computação no banco
+cursor.execute("SELECT * FROM alunos WHERE curso = ?", ("Computação",))
+for linha in cursor.fetchall():
+    print(f"ID {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]}")
