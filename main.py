@@ -50,12 +50,18 @@ cursor = conexao.cursor()
 # print("Dados atualizados com sucesso!")
 
 # Consultar os dados no banco de dados
-cursor.execute("SELECT * FROM alunos")
-# Ferchall traz todas as linhas da consulta
-for linha in cursor.fetchall():
-    print(f"ID {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]}")
+# cursor.execute("SELECT * FROM alunos")
+# # Ferchall traz todas as linhas da consulta
+# for linha in cursor.fetchall():
+#     print(f"ID {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]}")
 
-# Selecionar apenas os alunos de computação no banco
-cursor.execute("SELECT * FROM alunos WHERE curso = ?", ("Computação",))
-for linha in cursor.fetchall():
-    print(f"ID {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]}")
+# # Selecionar apenas os alunos de computação no banco
+# cursor.execute("SELECT * FROM alunos WHERE curso = ?", ("Computação",))
+# for linha in cursor.fetchall():
+#     print(f"ID {linha[0]} | NOME: {linha[1]} | IDADE: {linha[2]} | CURSO: {linha[3]}")
+
+# Deletando dados do banco
+cursor.execute("DELETE FROM alunos WHERE id =?", (3,))
+conexao.commit()
+# Sempre fechar a conexão no final
+conexao.close()
